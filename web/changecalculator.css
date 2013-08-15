@@ -1,0 +1,42 @@
+body {
+  background-color: #F8F8F8;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin: 15px;
+}
+
+.box-container {   /*this is defining our box class.*/
+    display: inline-block;  /*display as a block!*/
+    border: 2px solid #ccc; /*we're defining three things for the border here! size, type, color.*/
+    background-color: white; /* the higher the number/letter (numbers are higher than letters) the closer to white. */
+    padding: 12px; /*padding top, right, bottom, left. "padding" includes all 4, or you can define individually */
+    /*margin: 10px;*/
+    float: left;
+    margin: 10px;
+}
+
+input {
+    width: 60px;
+    text-align: right;
+    margin: 0;
+}
+
+.btn {
+    cursor: default !important; /* the !important discriptor means we want our thing to override bootstrap's */
+}
+
+fieldset {
+    margin-bottom: 10px;
+
+}
+
+.numeric-data-cell {
+    text-align: right !important;
+    width: 50px;
+}
+
+
+
+

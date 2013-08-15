@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <!-- it's not a bad idea to think "what do I want the user interface to be? Then do the code to back it up -->
+        <!-- but not required, and it doesn't make you a bad programmer to do it the other way around -->
+
+<html>
+  <head>
+    <meta charset="utf-8">
+
+      <title>Change Calculator</title>
+
+      <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="changecalculator.css">
+
+      <script type="application/dart" src="changecalculator.dart"></script>
+      <script src="packages/browser/dart.js"></script>
+  </head>
+  <body>
+    <h1>ChangeCalculator</h1>
+
+    <div class="box-container">
+        <h4>Convert to Coins</h4>
+
+        <!-- here we're binding "dollars" to that variable in dart. Also, this "if..." function IS dart code! -->
+        <!-- which is why, although HTML is NOT case-sensitive, dart IS, so any dart code incorporated must be -->
+        <fieldset class="form-inline">
+            <input type="text" bind-value="dollars" on-key-up="if ($event.keyCode == KeyCode.ENTER) convertDollars()" autocomplete="off">
+            <button class="btn" on-click="convertDollars()">Convert Dollars</button>
+        </fieldset>
+
+       <fieldset class="form-inline">
+            <input type="text" bind-value="gold" on-key-up="if ($event.keyCode == KeyCode.ENTER) convertGold()" autocomplete="off">
+            <button class="btn" on-click="convertGold()">Convert Gold</button>
+        </fieldset>
+
+        <p innerHtml="{{convertMessage}}"></p>
+
+        <!--<fieldset class="form-inline">-->
+            <!--<input type="text" autocomplete="off">-->
+            <!--<button class="btn">Convert Gold</button>-->
+        <!--</fieldset>-->
+
+        <hr>
+
+        <h4>{{convertOutputHeader}}</h4>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Unit</th>
+              <th>Qty</th>
+            </tr>
+          </thead>
+          <tbody template repeat="unit in outputUnits"> <!--tables in HTML don't allow templates, that's why we do it this way -->
+            <tr>
+              <td>{{unit.name}}</td>
+              <td class="numeric-data-cell">{{unit.qty}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <div class ="box-container">
+        <h4>Total Value (Gold)</h4>
+
+        <template repeat="unit in unitsDnD"> <!--This is by far the most common way to use template -->
+            <fieldset class="form-inline">
+                <input type="text" bind-value="unit.qtyStr" autocomplete="off"> {{unit.name}}
+            </fieldset>
+        </template>
+
+        <p><strong>Total: </strong>{{outputTotal}}</p>
+
+        <p innerHtml="{{totalMessage}}"></p>
+
+        <button class="btn" on-click="calculateTotal()">Calculate Total</button>
+    </div>
+  </body>
+
+</html>
